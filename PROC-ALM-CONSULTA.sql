@@ -195,7 +195,7 @@ Create procedure consulta_cotizacion (
 )
 BEGIN
 
-	Select c.id_cotizacion, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo",  tpv.nom_tpVenta, c.subTotal, c.iva, c.total, c.fechaEmision ,c.fechaVigencia, c.estatus, c.factura, c.personal, c.correo_pers, c.observacion
+	Select c.id_cotizacion, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo",  cl.nom_negocio ,tpv.nom_tpVenta, c.subTotal, c.iva, c.total, c.fechaEmision ,c.fechaVigencia, c.estatus, c.factura, c.personal, c.correo_pers, c.observacion
     from cotizacion c
     inner join tipoVenta tpv on tpv.id_tpVenta = c.id_tpVenta
     inner join cliente cl on cl.id_cliente = c.id_cliente

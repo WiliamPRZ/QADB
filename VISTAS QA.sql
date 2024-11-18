@@ -52,7 +52,7 @@ order by nom_cliente ASC, apPaterno ASC, apMaterno ASC;
 select * from view_cliente;
 
 CREATE VIEW view_cotizacion AS
-Select c.id_cotizacion, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo",  tpv.nom_tpVenta, c.subTotal, c.iva, c.total, c.fechaEmision ,c.fechaVigencia, c.estatus, c.factura, c.personal, c.correo_pers, c.observacion
+Select c.id_cotizacion, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo",  cl.nom_negocio ,tpv.nom_tpVenta, c.subTotal, c.iva, c.total, c.fechaEmision ,c.fechaVigencia, c.estatus, c.factura, c.personal, c.correo_pers, c.observacion
 from cotizacion c
 inner join tipoVenta tpv on tpv.id_tpVenta = c.id_tpVenta
 inner join cliente cl on cl.id_cliente = c.id_cliente
@@ -60,6 +60,25 @@ where eliminacion = false
 ORDER BY c.id_cotizacion DESC;
 
 select * from view_cotizacion;
+
+CREATE VIEW view_productos_cotizacion AS
+Select pc.id_cotizacion,  pc.id_prod_cot , pc.id_producto,  pc.cantidad, sc.nom_subclasificacion , p.nombre_prod as "Descripcion", pc.prod_base, pc.prod_altura, pc.precio_Uni, pc.importe
+from prod_cotizacion pc
+inner join cotizacion c on pc.id_cotizacion = c.id_cotizacion
+inner join producto p on p.id_producto= pc.id_producto
+inner join material m on m.id_material = p.id_material
+inner join subClasificacion sc on sc.id_subclasificacion =p.id_subclasificacion
+order by pc.id_cotizacion;
+
+
+DELIMITER //
+Create procedure pa_view_productos_cotizacion ()
+BEGIN
+	select * from view_productos_cotizacion;
+END //
+DELIMITER ;
+
+call pa_view_productos_cotizacion;
 
 CREATE VIEW view_ordenTrabajo AS
 Select ot.id_ordenTrabajo, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo", cl.nom_negocio, ot.correo_pers, ot.personal_acep, ot.fechaEmision , nom_estCobranza, c.total as "Total Venta", totalPagado, c.observacion
