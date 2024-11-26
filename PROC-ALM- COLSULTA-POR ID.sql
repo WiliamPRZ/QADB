@@ -86,7 +86,7 @@ Create procedure consulta_cliente_ID (
     IN ID INT
 )
 BEGIN
-	Select c.id_cliente ,concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo", ec.adeudo ,tpc.nom_tpcliente,const_fiscal ,  RFC_cliente , nom_negocio , dom_cliente , telWP_cliente ,  telFJ_cliente , correo_cliente 
+	Select c.id_cliente ,concat(apPaterno ," ",apMaterno, " ", nom_cliente ) AS "Nombre Completo", ec.adeudo ,tpc.nom_tpcliente,const_fiscal ,  RFC_cliente , nom_negocio , dom_cliente , telWP_cliente ,  telFJ_cliente , correo_cliente 
     FROM cliente c
     inner join tpCliente tpc on tpc.id_tpCliente = c.id_tpCliente 
     inner join estadoCliente ec on ec.id_cliente = c.id_cliente
@@ -179,7 +179,7 @@ Create procedure consulta_cotizacion_ID (
 )
 BEGIN
 
-	Select c.id_cotizacion, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo",  tpv.nom_tpVenta, c.subTotal, c.iva, c.total, c.fechaEmision ,c.fechaVigencia, c.estatus, c.factura, c.personal, c.correo_pers, c.observacion
+	Select c.id_cotizacion, concat(apPaterno ," ",apMaterno, " ", nom_cliente ) AS "Nombre Completo",  cl.nom_negocio, tpv.nom_tpVenta, c.subTotal, c.iva, c.total, c.fechaEmision ,c.fechaVigencia, c.estatus, c.factura, c.personal, c.correo_pers, c.observacion
     from cotizacion c
     inner join tipoVenta tpv on tpv.id_tpVenta = c.id_tpVenta
     inner join cliente cl on cl.id_cliente = c.id_cliente
@@ -194,7 +194,7 @@ Create procedure consulta_ordenTrabajo_ID (
 )
 BEGIN
 
-	Select ot.id_ordenTrabajo, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo", cl.nom_negocio, ot.correo_pers, ot.personal_acep, ot.fechaEmision , nom_estCobranza, c.total as "Total Venta", totalPagado
+	Select ot.id_ordenTrabajo, concat(apPaterno ," ",apMaterno, " ", view_productos_cotizacion ) AS "Nombre Completo", cl.nom_negocio, ot.correo_pers, ot.personal_acep, ot.fechaEmision , nom_estCobranza, c.total as "Total Venta", totalPagado
     from ordenTrabajo ot
     inner join cotizacion c on c.id_cotizacion = ot.id_cotizacion
     inner join cliente cl on cl.id_cliente =c.id_cliente
@@ -203,31 +203,3 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL consulta_clasificacion_ID(1);
-CALL consulta_subclasificacion_ID(1);
-CALL consulta_material_ID(1);
-CALL consulta_unidad_ID(1);
-
-CALL consulta_producto_ID(1);
-
-CALL consulta_tpCliente_ID(1);
-CALL consulta_cliente_ID(1);
-
-
-CALL consulta_acabado_ID(1);
-CALL consulta_tipoVenta_ID(1);
-CALL consulta_proceso_ID(1);
-CALL consulta_tipoPago_ID(1);
-CALL consulta_formaPago_ID(1);
-CALL consulta_estatusCobranza_ID(1);
-
-CALL consulta_cotizacion_ID(1);
-
-CALL consulta_acab_cotizacion(1);
-CALL consulta_proc_cotizacion(1);
-CALL consulta_productos_cotizacion(1);
-
-CALL consulta_ordenTrabajo_ID(1);
-
-CALL consulta_pagoOrdenTrabajo(1);
-CALL consulta_Prod_ordenTrabajo(1);

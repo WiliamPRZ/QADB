@@ -95,7 +95,7 @@ Create procedure consulta_cliente (
 )
 BEGIN
 
-	Select c.id_cliente ,concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo", ec.adeudo ,tpc.nom_tpcliente,const_fiscal ,  RFC_cliente , nom_negocio , dom_cliente , telWP_cliente ,  telFJ_cliente , correo_cliente 
+	Select c.id_cliente ,concat(apPaterno ," ",apMaterno , " ", nom_cliente) AS "Nombre Completo", ec.adeudo ,tpc.nom_tpcliente,const_fiscal ,  RFC_cliente , nom_negocio , dom_cliente , telWP_cliente ,  telFJ_cliente , correo_cliente 
     FROM cliente c
     inner join tpCliente tpc on tpc.id_tpCliente = c.id_tpCliente 
     inner join estadoCliente ec on ec.id_cliente = c.id_cliente
@@ -195,7 +195,7 @@ Create procedure consulta_cotizacion (
 )
 BEGIN
 
-	Select c.id_cotizacion, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo",  cl.nom_negocio ,tpv.nom_tpVenta, c.subTotal, c.iva, c.total, c.fechaEmision ,c.fechaVigencia, c.estatus, c.factura, c.personal, c.correo_pers, c.observacion
+	Select c.id_cotizacion, concat(apPaterno ," ",apMaterno, " ", nom_cliente ) AS "Nombre Completo",  cl.nom_negocio ,tpv.nom_tpVenta, c.subTotal, c.iva, c.total, c.fechaEmision ,c.fechaVigencia, c.estatus, c.factura, c.personal, c.correo_pers, c.observacion
     from cotizacion c
     inner join tipoVenta tpv on tpv.id_tpVenta = c.id_tpVenta
     inner join cliente cl on cl.id_cliente = c.id_cliente
@@ -258,7 +258,7 @@ Create procedure consulta_ordenTrabajo(
 )
 BEGIN
 
-	Select ot.id_ordenTrabajo, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo", cl.nom_negocio, ot.correo_pers, ot.personal_acep, ot.fechaEmision , nom_estCobranza, c.total as "Total Venta", totalPagado
+	Select ot.id_ordenTrabajo, concat(apPaterno ," ",apMaterno, " ", nom_cliente ) AS "Nombre Completo", cl.nom_negocio, ot.correo_pers, ot.personal_acep, ot.fechaEmision , nom_estCobranza, c.total as "Total Venta", totalPagado
     from ordenTrabajo ot
     inner join cotizacion c on c.id_cotizacion = ot.id_cotizacion
     inner join cliente cl on cl.id_cliente =c.id_cliente
