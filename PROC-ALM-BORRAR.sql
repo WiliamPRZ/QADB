@@ -1,5 +1,5 @@
 # 	BORRAR (cambiar el alta de los catalogos)
-use prueba2;
+use QualityDB;
 
 #		BAJA CLASIFICACION
 DELIMITER //
@@ -151,10 +151,7 @@ DELIMITER ;
 #		BAJA FORMA DE PAGO
 DELIMITER //
 create procedure baja_formaPago(
-	IN p_id int, 
-	IN p_Nuevonombre varchar(40),
-	IN p_descripcion varchar(100),
-	IN p_alta BOOLEAN
+	IN p_id int
 )
 BEGIN
 	UPDATE formaPago

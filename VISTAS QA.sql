@@ -1,5 +1,5 @@
 ## VISTAS TABLA
-use prueba2;
+use QualityDB;
 
 # 		CLASIFICACION
 CREATE OR REPLACE  VIEW view_clasificacion  AS

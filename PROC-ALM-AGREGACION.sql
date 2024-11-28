@@ -2,7 +2,7 @@
 ########################################
 ########################################
 # Procedimiento Almacenado 
-use prueba2;
+use QualityDB;
 #		AGREGAR TIPO DE CLIENTE
 DELIMITER //
 Create procedure agg_tipoCliente (

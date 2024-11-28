@@ -1,8 +1,6 @@
-use prueba;
-drop database prueba2;
 
-create database prueba2;
-use prueba2;
+create database QualityDB;
+use QualityDB;
 
 ##########################################
 ########################################

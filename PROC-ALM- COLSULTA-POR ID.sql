@@ -1,6 +1,6 @@
 
 #  CONSULTAR TABLAS POR ID
-use prueba2;
+use QualityDB;
 # 		CLASIFICACION
 DELIMITER //
 Create procedure consulta_clasificacion_ID (

@@ -1,5 +1,5 @@
 #	MODIFICAR INFORMACION DE CATALOGOS
-use prueba2;
+use QualityDB;
 
 #		MODIFICAR TIPO DE CLIENTE
 DELIMITER //
@@ -159,7 +159,6 @@ DELIMITER ;
 DELIMITER //
 create procedure modificar_producto(
 	IN p_id int, 
-    IN p_id_clasificacion  INT,
 	IN p_id_subclasificacion  INT,
 	IN p_id_Material   INT,
 	IN p_id_unidad   INT,
@@ -171,8 +170,7 @@ create procedure modificar_producto(
 )
 BEGIN
 	UPDATE producto 
-    SET id_clasificacion  = p_id_clasificacion,
-		id_subclasificacion  = p_id_subclasificacion,
+    SET id_subclasificacion  = p_id_subclasificacion,
         id_Material    = p_id_Material  ,
         id_unidad  = p_id_unidad,
         apl_inst  = p_apl_inst,

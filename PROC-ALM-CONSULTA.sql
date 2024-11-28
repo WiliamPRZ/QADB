@@ -1,6 +1,6 @@
 
 #  CONSULTAR TABLAS 
-use prueba2;
+use QualityDB;
 # 		CLASIFICACION
 DELIMITER //
 Create procedure consulta_clasificacion (
@@ -13,7 +13,6 @@ BEGIN
     and alta_clasificacion = true;
 END //
 DELIMITER ;
-
 # 		SUB--CLASIFICACION
 DELIMITER //                   
 Create procedure consulta_subclasificacion (
@@ -81,7 +80,6 @@ Create procedure consulta_tpCliente (
     IN nombre varchar(20)
 )
 BEGIN
-
 	Select id_tpCliente ,nom_tpcliente ,desc_tpcliente 
     FROM tpCliente
     where nom_tpcliente  like  CONCAT('%', nombre, '%');
@@ -99,7 +97,8 @@ BEGIN
     FROM cliente c
     inner join tpCliente tpc on tpc.id_tpCliente = c.id_tpCliente 
     inner join estadoCliente ec on ec.id_cliente = c.id_cliente
-    where "Nombre Completo" like  CONCAT('%', nombre, '%');
+    where "Nombre Completo" like  CONCAT('%', nombre, '%')
+    order by nom_cliente ASC, apPaterno ASC, apMaterno ASC;
 END //
 DELIMITER ;
 
@@ -152,7 +151,6 @@ Create procedure consulta_tipoPago (
     IN nombre varchar(20)
 )
 BEGIN
-
 	Select id_tpPago , nom_tpPago, desc_tpPago, alta_tpPago 
     from tipoPago    
     where nom_tpPago like  CONCAT('%', nombre, '%')
@@ -166,7 +164,6 @@ Create procedure consulta_formaPago (
     IN nombre varchar(20)
 )
 BEGIN
-
 	Select id_fmPago , nom_fmPago, desc_fmPago, alta_fmPago 
     from formaPago  
     where nom_fmPago like  CONCAT('%', nombre, '%')
@@ -180,7 +177,6 @@ Create procedure consulta_estatusCobranza (
     IN nombre varchar(20)
 )
 BEGIN
-
 	Select id_estCobranza , nom_estCobranza ,  desc_estCobranza ,alta_estCobranza  
     from estatusCobranza   
     where nom_estCobranza   like  CONCAT('%', nombre, '%')
@@ -201,11 +197,12 @@ BEGIN
     inner join cliente cl on cl.id_cliente = c.id_cliente
     where "Nombre Completo"         
     like  CONCAT('%', nombre, '%') or cl.nom_negocio  like  CONCAT('%', nombre, '%') 
-    and eliminacion = false;
+    and eliminacion = false
+    ORDER BY c.id_cotizacion DESC;
 END //
 DELIMITER ;
 
-# 		ACABADOS  POR  COTIZACIONde cada producto
+# 		ACABADOS  POR  COTIZACION de cada producto
 DELIMITER //
 Create procedure consulta_acab_cotizacion (
     IN ID INT
@@ -264,7 +261,8 @@ BEGIN
     inner join cliente cl on cl.id_cliente =c.id_cliente
     inner join estatusCobranza ec on ec.id_estCobranza = ot.id_estCobranza
 	where "Nombre Completo"         
-    like  CONCAT('%', nombre, '%') or cl.nom_negocio  like  CONCAT('%', nombre, '%');
+    like  CONCAT('%', nombre, '%') or cl.nom_negocio  like  CONCAT('%', nombre, '%')
+    ORDER BY ot.id_ordenTrabajo DESC;
 END //
 DELIMITER ;
 
@@ -300,30 +298,3 @@ BEGIN
     where pot.id_ordenTrabajo = ID;
 END //
 DELIMITER ;
-
-CALL consulta_clasificacion("");
-CALL consulta_subclasificacion("");
-CALL consulta_material("");
-CALL consulta_unidad("");
-
-CALL consulta_producto(""); #//nombre del material, clasificacion o subclasificacion
-
-CALL consulta_tpCliente("");
-CALL consulta_cliente("");
-
-
-CALL consulta_acabado("");
-CALL consulta_tipoVenta("");
-CALL consulta_proceso("");
-CALL consulta_tipoPago("");
-CALL consulta_formaPago("");
-CALL consulta_estatusCobranza("");
-
-CALL consulta_cotizacion("CHAW");
-CALL consulta_acab_cotizacion(1);
-CALL consulta_proc_cotizacion(1);
-CALL consulta_productos_cotizacion(1);
-
-CALL consulta_ordenTrabajo("CHAW");
-CALL consulta_pagoOrdenTrabajo(1);
-CALL consulta_Prod_ordenTrabajo(1);
