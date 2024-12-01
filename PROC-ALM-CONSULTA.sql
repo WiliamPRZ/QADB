@@ -272,7 +272,7 @@ Create procedure consulta_Prod_ordenTrabajo(
     IN ID INT
 )
 BEGIN
-	Select ot.id_ordenTrabajo, pc.id_cotizacion, pc.id_prod_cot , pc.id_producto,  pc.cantidad,  sc.nom_subclasificacion , p.nombre_prod as "Descripcion", pc.prod_base, pc.prod_altura, pc.precio_Uni, pc.importe
+	Select ot.id_ordenTrabajo, pc.id_cotizacion, pc.id_prod_cot , pc.id_producto,  pc.cantidad,  sc.nom_subclasificacion , p.nombre_prod as "Descripcion", FORMAT(pc.prod_base, 2) AS base, FORMAT(pc.prod_altura, 2) AS altura, pc.precio_Uni, pc.importe
     from prod_cotizacion pc
     inner join cotizacion c on pc.id_cotizacion = c.id_cotizacion
     inner join ordenTrabajo ot on ot.id_cotizacion = c.id_cotizacion
@@ -282,6 +282,8 @@ BEGIN
     where ot.id_ordenTrabajo = ID;
 END //
 DELIMITER ;
+
+call consulta_Prod_ordenTrabajo(1);
 
 # 		PAGO	ORDEN	DE	TRABAJO
 DELIMITER //

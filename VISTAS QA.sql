@@ -33,8 +33,9 @@ inner join subclasificacion subc on subc.id_subclasificacion  = p.id_subclasific
 inner join clasificacion c on c.id_clasificacion = subc.id_clasificacion
 inner join unidad u on u.id_unidad = p.id_unidad
 inner join material m on m.id_material = p.id_material
-where p.alta_producto = TRUE;
+where p.alta_producto = TRUE;
     
+    select * from view_productos;
 
 CREATE OR REPLACE  VIEW view_cliente AS
 Select id_cliente ,concat(apPaterno ," ",apMaterno, " ", nom_cliente ) AS "Nombre Completo", tpc.nom_tpcliente,const_fiscal ,  RFC_cliente , nom_negocio , dom_cliente , telWP_cliente ,  telFJ_cliente , correo_cliente 
@@ -122,6 +123,8 @@ CREATE OR REPLACE  view view_estatusCobranza as
 Select id_estCobranza , nom_estCobranza ,  desc_estCobranza ,alta_estCobranza  
 from estatusCobranza   
 where alta_estCobranza = true;
+
+
 
 
 
