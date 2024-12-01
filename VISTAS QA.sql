@@ -27,13 +27,13 @@ Select id_unidad   , nom_unidad ,desc_unidad
 from unidad ;
 
 CREATE OR REPLACE  VIEW view_productos AS
-Select id_producto , c.nom_clasificacion  , subc.nom_subclasificacion , p.nombre_prod,  m.nom_material , u.nom_unidad ,apl_inst  , precio_sin ,  precio_con , observaciones , alta_producto 
+Select id_producto AS "value", p.nombre_prod AS 'label',id_producto , c.nom_clasificacion  , subc.nom_subclasificacion , p.nombre_prod,  m.nom_material , u.nom_unidad ,apl_inst  , precio_sin ,  precio_con , observaciones , alta_producto 
 from producto p
 inner join subclasificacion subc on subc.id_subclasificacion  = p.id_subclasificacion 
 inner join clasificacion c on c.id_clasificacion = subc.id_clasificacion
 inner join unidad u on u.id_unidad = p.id_unidad
 inner join material m on m.id_material = p.id_material
-where p.alta_producto = TRUE;
+where p.alta_producto = TRUE;
     
 
 CREATE OR REPLACE  VIEW view_cliente AS
@@ -53,7 +53,7 @@ ORDER BY c.id_cotizacion DESC;
 
 
 CREATE OR REPLACE VIEW view_productos_cotizacion AS
- Select pc.id_cotizacion,  pc.id_prod_cot , pc.id_producto,  pc.cantidad, sc.nom_subclasificacion , p.nombre_prod as "Descripcion", pc.prod_base, pc.prod_altura, pc.precio_Uni, pc.importe
+Select pc.id_cotizacion,  pc.id_prod_cot , pc.id_producto,  pc.cantidad, sc.nom_subclasificacion, p.nombre_prod as "Descripcion", FORMAT(pc.prod_base, 2) AS base, FORMAT(pc.prod_altura, 2) AS altura, pc.precio_Uni, pc.importe
 from prod_cotizacion pc
 inner join cotizacion c on pc.id_cotizacion = c.id_cotizacion
 inner join producto p on p.id_producto= pc.id_producto
