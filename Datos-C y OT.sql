@@ -18,7 +18,6 @@ CALL agg_acab_cotizacion( 1  ,  2);
 
 #CALL agg_ordenTrabajo(  p_id_cotizacion  ,  p_correo_pers    ,p_personal_acep);
 CALL agg_ordenTrabajo(  1  ,  "correo@gmail.com"    ,"veronica carrillo");
-CALL agg_ordenTrabajo(  1  ,  "correo@gmail.com"    ,"veronica carrillo");
 
 #CALL agg_pagoOrdenTrabajo(  id_ordenTrabajo   ,  id_tpPago     ,id_fmPago , comprobante , fecha_pago , montoPago);
 CALL agg_pagoOrdenTrabajo(  1   ,  1     ,1 , "" , "2024-12-30" , 250.6);

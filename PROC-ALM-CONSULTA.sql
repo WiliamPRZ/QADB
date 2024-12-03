@@ -283,8 +283,6 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL consulta_ordenTrabajo_ID(1);
-call consulta_Prod_ordenTrabajo(1);
 
 # 		PAGO	ORDEN	DE	TRABAJO
 DELIMITER //
