@@ -1,4 +1,5 @@
 
+drop database QualityDB;
 create database QualityDB;
 use QualityDB;
 

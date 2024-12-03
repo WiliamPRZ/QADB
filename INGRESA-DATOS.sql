@@ -26,7 +26,6 @@ insert into unidad( nom_unidad , desc_unidad ) values ('Rollo', "rollo");
 insert into unidad( nom_unidad, desc_unidad ) values ('PZ', "pieza");
 insert into unidad( nom_unidad, desc_unidad ) values ('MT2', "metros cuadrados");
 
-
 #Datos de los tipos de pagos
 insert into tipoPago( nom_tpPago, desc_tpPago , alta_tpPago) values('Anticipo', "", TRUE);
 insert into tipoPago( nom_tpPago, desc_tpPago, alta_tpPago ) values('Pago total', "", TRUE);
@@ -63,10 +62,6 @@ insert into tpCliente(nom_tpcliente, desc_tpcliente ) values ('Credito Autorizad
 insert into tpCliente( nom_tpcliente, desc_tpcliente ) values ('Trabajador QA', "");
 insert into tpCliente(nom_tpcliente, desc_tpcliente ) values ('Orden interna QA', "");
 
-
-
-
-
 #CALL agg_tipoCliente (nom_tpcliente, desc_tpcliente  );
 CALL agg_tipoCliente ("En caja", "El cliente se presento en el mostrador del local"  );
 
@@ -100,21 +95,6 @@ CALL agg_tipoVenta ("EN MOSTRADOR", "EL CLIENTE ASISTIO AL LOCAL A REALIAZAR SU 
 #CALL agg_proceso (nom_proceso, desc_proceso );
 CALL agg_proceso ("DISEÑO", "EL CLIENTE REQUIERE QUE SE REALICE EL DISEÑO PARA SU PRODUCTO" );
 
-#CALL agg_cotizacion(id_cliente , id_tpVenta , subTotal , iva , total , fechaVigencia  , factura , personal , observacion , correo_pers) ; ## estatus = False y Eliminacion = False, al iniciar la cotizacion ## Regresa el ultimo id registrado 
-CALL agg_cotizacion(1 , 3 , 369.5 , 200 , 589.5 , "2024-12-12"  , false , "Veronica Palazuelos" , "El cliente solicito un diseño para el logo y el fondo del folleto " , "correo@gmail.com") ;
-
-#CALL agg_proc_cotizacion(  id_cotizacion  ,  id_proceso);
-cALL agg_proc_cotizacion(  1  ,  3);
-CALL agg_proc_cotizacion(  1  ,  2);
-
-#CALL agg_product_cotizacion( id_cotizacion  ,  id_producto   ,cantidad,  prod_base, prod_altura, precio_Uni , importe  );
-CALL agg_product_cotizacion( 1  ,  1   ,10,  20, 30, 50 , 509  );
-CALL agg_product_cotizacion( 1  ,  1   ,5,  2.50, 3.5, 30 , 596.56  );
-CALL agg_product_cotizacion( 1  ,  1   ,2,  36.2, 2.5, 25.99 , 5600.69  );
-
-#CALL agg_acab_cotizacion( id_prod_cot  ,  id_acabado);
-CALL agg_acab_cotizacion( 1  ,  1);
-CALL agg_acab_cotizacion( 1  ,  2);
 #CALL agg_estatusCobranza (nom_estCobranza , desc_estCobranza  );
 CALL agg_estatusCobranza ("CANCELADA", "EL CLIENTE SOLICITO CANCELAR LA ORDEN DE TRABAJO "  );
 
@@ -123,11 +103,3 @@ CALL agg_tipoPago ("ABONO", "EL CLIENTE REALIZA UN PAGO DE SU ORDEN DE TRABAJO" 
 
 #CALL agg_formaPago (nom_fmPago , desc_fmPago );
 CALL agg_formaPago ("PAGO A LA CUENTA DE BBVA QA", "REALIZO EL PAGO A LA CUENTA BANCARIA BBVA 589641256325 DE LA EMPRESA QUALITYART" );
-
-#CALL agg_ordenTrabajo(  p_id_cotizacion  ,  p_correo_pers    ,p_personal_acep);
-CALL agg_ordenTrabajo(  1  ,  "correo@gmail.com"    ,"veronica carrillo");
-CALL agg_ordenTrabajo(  1  ,  "correo@gmail.com"    ,"veronica carrillo");
-
-#CALL agg_pagoOrdenTrabajo(  id_ordenTrabajo   ,  id_tpPago     ,id_fmPago , comprobante , fecha_pago , montoPago);
-CALL agg_pagoOrdenTrabajo(  1   ,  1     ,1 , "" , "2024-12-30" , 250.6);
-CALL agg_pagoOrdenTrabajo(  1  ,  2     ,1 , "" , "2024-12-30" ,  130.5);
