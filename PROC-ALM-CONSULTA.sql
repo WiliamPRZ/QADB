@@ -283,7 +283,6 @@ BEGIN
 END //
 DELIMITER ;
 
-
 # 		PAGO	ORDEN	DE	TRABAJO
 DELIMITER //
 Create procedure consulta_pagoOrdenTrabajo(

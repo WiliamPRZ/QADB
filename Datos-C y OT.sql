@@ -14,7 +14,9 @@ CALL agg_proc_cotizacion(  1  ,  2);
 
 #CALL agg_acab_cotizacion( id_prod_cot  ,  id_acabado);
 CALL agg_acab_cotizacion( 1  ,  1);
-CALL agg_acab_cotizacion( 1  ,  2);
+CALL agg_acab_cotizacion( 2  ,  2);
+CALL agg_acab_cotizacion( 3  ,  3);
+CALL agg_acab_cotizacion( 1  ,  4);
 
 #CALL agg_ordenTrabajo(  p_id_cotizacion  ,  p_correo_pers    ,p_personal_acep);
 CALL agg_ordenTrabajo(  1  ,  "correo@gmail.com"    ,"veronica carrillo");

@@ -178,7 +178,6 @@ Create procedure consulta_cotizacion_ID (
     IN ID INT 
 )
 BEGIN
-
 	Select c.id_cotizacion, concat(apPaterno ," ",apMaterno, " ", nom_cliente ) AS "Nombre Completo",  cl.nom_negocio, tpv.nom_tpVenta, c.subTotal, c.iva, c.total, c.fechaEmision ,c.fechaVigencia, c.estatus, c.factura, c.personal, c.correo_pers, c.observacion
     from cotizacion c
     inner join tipoVenta tpv on tpv.id_tpVenta = c.id_tpVenta
@@ -193,8 +192,7 @@ Create procedure consulta_ordenTrabajo_ID (
     IN ID INT
 )
 BEGIN
-
-	Select ot.id_ordenTrabajo, concat(apPaterno ," ",apMaterno, " ", view_productos_cotizacion ) AS "Nombre Completo", cl.nom_negocio, ot.correo_pers, ot.personal_acep, ot.fechaEmision , nom_estCobranza, c.total as "Total Venta", totalPagado
+	Select ot.id_ordenTrabajo, concat(apPaterno ," ",apMaterno, " ", nom_cliente ) AS "Nombre Completo", cl.nom_negocio, ot.correo_pers, ot.personal_acep, ot.fechaEmision , nom_estCobranza, c.subTotal, c.iva , c.total as "Total Venta", totalPagado
     from ordenTrabajo ot
     inner join cotizacion c on c.id_cotizacion = ot.id_cotizacion
     inner join cliente cl on cl.id_cliente =c.id_cliente
@@ -203,3 +201,36 @@ BEGIN
 END //
 DELIMITER ;
 
+# 		ACABADOS ORDEN	DE	TRABAJO
+DELIMITER //
+Create procedure consulta_acab_OrdenTrabajo (
+    IN ID INT
+)
+BEGIN
+	Select  
+    ot.id_ordenTrabajo AS OrdenTrabajo,
+    pc.id_prod_cot AS Producto,
+    GROUP_CONCAT(a.nom_acabado ORDER BY a.nom_acabado SEPARATOR ', ') AS Acabados
+    from acab_cotizacion ac
+    inner join prod_cotizacion pc on pc.id_prod_cot = ac.id_prod_cot
+    inner join cotizacion c on c.id_cotizacion = pc.id_cotizacion
+    inner join acabado a on ac.id_acabado = a.id_acabado 
+    inner join ordenTrabajo ot on c.id_cotizacion = ot.id_cotizacion
+    where ot.id_ordenTrabajo = ID
+    group by  ot.id_ordenTrabajo, pc.id_prod_cot;
+END //
+DELIMITER ; 
+# 		PROCESOS ORDEN	DE	TRABAJO
+DELIMITER //
+Create procedure consultar_proc_OrdenTrabajo (
+    IN ID INT
+)
+BEGIN
+	Select ot.id_ordenTrabajo, pc.id_cotizacion,  p.id_proceso   ,p.nom_proceso 
+    from proc_cotizacion pc
+    inner join cotizacion c on pc.id_cotizacion = c.id_cotizacion
+    inner join proceso p on pc.id_proceso  = p.id_proceso    
+    inner join ordenTrabajo ot on c.id_cotizacion = ot.id_cotizacion 
+    where ot.id_ordenTrabajo = ID;
+END //
+DELIMITER ;
