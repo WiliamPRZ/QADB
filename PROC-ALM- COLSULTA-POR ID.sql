@@ -152,7 +152,6 @@ Create procedure consulta_formaPago_ID (
     IN ID INT 
 )
 BEGIN
-
 	Select id_fmPago , nom_fmPago, desc_fmPago, alta_fmPago 
     from formaPago  
     where id_fmPago = ID;
@@ -165,7 +164,6 @@ Create procedure consulta_estatusCobranza_ID (
     IN ID INT
 )
 BEGIN
-
 	Select id_estCobranza , nom_estCobranza ,  desc_estCobranza ,alta_estCobranza  
     from estatusCobranza   
     where id_estCobranza = ID;
@@ -234,3 +232,4 @@ BEGIN
     where ot.id_ordenTrabajo = ID;
 END //
 DELIMITER ;
+CALL consulta_acab_OrdenTrabajo(1);
