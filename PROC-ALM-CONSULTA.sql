@@ -192,7 +192,7 @@ BEGIN
     ORDER BY c.id_cotizacion DESC;
 END //
 DELIMITER ;
-
+Call consulta_cotizacion("chaw")
 # 		ACABADOS  POR  COTIZACION de cada producto
 DELIMITER //
 Create procedure consulta_acab_cotizacion (

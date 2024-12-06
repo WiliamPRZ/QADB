@@ -18,7 +18,8 @@ BEGIN
     END IF;
 END //
 DELIMITER ;
-
+call baja_clasificacion(1);
+select * from view_clasificacion;
 #	BAJA	SUB---CLASIFICACION
 
 DELIMITER //

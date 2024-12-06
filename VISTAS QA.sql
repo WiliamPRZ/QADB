@@ -52,7 +52,7 @@ inner join cliente cl on cl.id_cliente = c.id_cliente
 where eliminacion = false
 ORDER BY c.id_cotizacion DESC;
 
-
+select * from view_cliente;
 CREATE OR REPLACE VIEW view_productos_cotizacion AS
 Select pc.id_cotizacion,  pc.id_prod_cot , pc.id_producto,  pc.cantidad, sc.nom_subclasificacion, p.nombre_prod as "Descripcion", FORMAT(pc.prod_base, 2) AS base, FORMAT(pc.prod_altura, 2) AS altura, pc.precio_Uni, pc.importe
 from prod_cotizacion pc
@@ -80,7 +80,6 @@ inner join cliente cl on cl.id_cliente =c.id_cliente
 inner join estatusCobranza ec on ec.id_estCobranza = ot.id_estCobranza
 ORDER BY ot.id_ordenTrabajo DESC;
 
-;
 
 # 		ACABADO
 CREATE OR REPLACE view view_acabado  as

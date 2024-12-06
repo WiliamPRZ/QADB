@@ -85,6 +85,9 @@ BEGIN
     END IF;
 END //
 DELIMITER ;
+select * from clasificacion;
+Call modificar_clasificaciones(1, "LONA DE VINIL","LONA DE VINIL, EXCLUSIVA PARA CIERTO TIPO DE TRABAJO");
+select * from clasificacion;
 #	MODIFICAR	SUB---CLASIFICACION
 
 DELIMITER //

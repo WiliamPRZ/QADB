@@ -103,3 +103,6 @@ CALL agg_tipoPago ("ABONO", "EL CLIENTE REALIZA UN PAGO DE SU ORDEN DE TRABAJO" 
 
 #CALL agg_formaPago (nom_fmPago , desc_fmPago );
 CALL agg_formaPago ("PAGO A LA CUENTA DE BBVA QA", "REALIZO EL PAGO A LA CUENTA BANCARIA BBVA 589641256325 DE LA EMPRESA QUALITYART" );
+
+
+select c.id_clasificacion, nom_clasificacion, id_subclasificacion, nom_subclasificacion  from subclasificacion sb join clasificacion c;

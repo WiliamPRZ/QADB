@@ -58,6 +58,8 @@ BEGIN
     values( p_nom_clasificacion, p_desc_clasificacion, TRUE);
 END //
 DELIMITER ;
+Call agg_clasificacion("ESTRUCTURAS PARA PUBLICIDAD", "OBJETOS ENFOCADOS EXCLUSIVAMENTE PARA PUBLICIDAD");
+select * from clasificacion;
 
 #	AGREGAR	SUB---CLASIFICACION
 DELIMITER //
