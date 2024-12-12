@@ -18,7 +18,6 @@ BEGIN
     END IF;
 END //
 DELIMITER ;
-call baja_clasificacion(1);
 #	BAJA	SUB---CLASIFICACION
 
 DELIMITER //

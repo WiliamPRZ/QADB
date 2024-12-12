@@ -277,7 +277,6 @@ BEGIN
 	group by  ot.id_ordenTrabajo, pc.id_prod_cot;
 END //
 DELIMITER ;
-call consulta_Prod_ordenTrabajo(1);
 # 		PAGO	ORDEN	DE	TRABAJO
 DELIMITER //
 Create procedure consulta_pagoOrdenTrabajo(

@@ -1,5 +1,5 @@
 
-use QualityDB;
+
 #CALL agg_cotizacion(id_cliente , id_tpVenta , subTotal , iva , total , fechaVigencia  , factura , personal , observacion , correo_pers) ; ## estatus = False y Eliminacion = False, al iniciar la cotizacion ## Regresa el ultimo id registrado 
 CALL agg_cotizacion(1 , 3 , 2574.45 , 411.92 , 2986.37 , "2024-12-12"  , false , "Veronica Palazuelos" , "El cliente solicito un diseño para el logo y el fondo del folleto " , "correo@gmail.com") ;
 
@@ -13,7 +13,10 @@ cALL agg_proc_cotizacion(  1  ,  3);
 CALL agg_proc_cotizacion(  1  ,  2);
 
 #CALL agg_acab_cotizacion( id_prod_cot  ,  id_acabado);
-
+CALL agg_acab_cotizacion( 1  ,  1);
+CALL agg_acab_cotizacion( 2  ,  2);
+CALL agg_acab_cotizacion( 3  ,  3);
+CALL agg_acab_cotizacion( 1  ,  4);
 
 #CALL agg_ordenTrabajo(  p_id_cotizacion  ,  p_correo_pers    ,p_personal_acep);
 CALL agg_ordenTrabajo(  1  ,  "correo@gmail.com"    ,"veronica carrillo");

@@ -73,7 +73,7 @@ DELIMITER ;
 call pa_view_productos_cotizacion;
 
 CREATE OR REPLACE  VIEW view_ordenTrabajo AS
-Select ot.id_ordenTrabajo, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo", cl.nom_negocio, ot.correo_pers, ot.personal_acep, ot.fechaEmision , nom_estCobranza, c.total as "Total Venta", totalPagado, c.observacion
+Select ot.id_ordenTrabajo, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo", cl.nom_negocio, ot.correo_pers, ot.personal_acep, ot.fechaEmision , nom_estCobranza,c.subTotal, c.iva, c.total as "Total Venta", totalPagado, c.observacion
 from ordenTrabajo ot
 inner join cotizacion c on c.id_cotizacion = ot.id_cotizacion
 inner join cliente cl on cl.id_cliente =c.id_cliente
