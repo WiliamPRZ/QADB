@@ -13,6 +13,7 @@ BEGIN
     and alta_clasificacion = true;
 END //
 DELIMITER ;
+
 # 		SUB--CLASIFICACION
 DELIMITER //                   
 Create procedure consulta_subclasificacion (
@@ -192,7 +193,7 @@ BEGIN
     ORDER BY c.id_cotizacion DESC;
 END //
 DELIMITER ;
-Call consulta_cotizacion("chaw")
+
 # 		ACABADOS  POR  COTIZACION de cada producto
 DELIMITER //
 Create procedure consulta_acab_cotizacion (
@@ -277,6 +278,7 @@ BEGIN
 	group by  ot.id_ordenTrabajo, pc.id_prod_cot;
 END //
 DELIMITER ;
+
 # 		PAGO	ORDEN	DE	TRABAJO
 DELIMITER //
 Create procedure consulta_pagoOrdenTrabajo(

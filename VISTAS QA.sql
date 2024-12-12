@@ -35,8 +35,6 @@ inner join unidad u on u.id_unidad = p.id_unidad
 inner join material m on m.id_material = p.id_material
 where p.alta_producto = TRUE;
     
-    select * from view_productos;
-
 CREATE OR REPLACE  VIEW view_cliente AS
 Select id_cliente ,concat(apPaterno ," ",apMaterno, " ", nom_cliente ) AS "Nombre Completo", tpc.nom_tpcliente,const_fiscal ,  RFC_cliente , nom_negocio , dom_cliente , telWP_cliente ,  telFJ_cliente , correo_cliente 
 FROM cliente c
@@ -52,7 +50,6 @@ inner join cliente cl on cl.id_cliente = c.id_cliente
 where eliminacion = false
 ORDER BY c.id_cotizacion DESC;
 
-select * from view_cliente;
 CREATE OR REPLACE VIEW view_productos_cotizacion AS
 Select pc.id_cotizacion,  pc.id_prod_cot , pc.id_producto,  pc.cantidad, sc.nom_subclasificacion, p.nombre_prod as "Descripcion", FORMAT(pc.prod_base, 2) AS base, FORMAT(pc.prod_altura, 2) AS altura, pc.precio_Uni, pc.importe
 from prod_cotizacion pc
@@ -62,16 +59,6 @@ inner join material m on m.id_material = p.id_material
 inner join subClasificacion sc on sc.id_subclasificacion =p.id_subclasificacion
 order by pc.id_cotizacion;
 
-
-DELIMITER //
-Create procedure pa_view_productos_cotizacion ()
-BEGIN
-	select * from view_productos_cotizacion;
-END //
-DELIMITER ;
-
-call pa_view_productos_cotizacion;
-
 CREATE OR REPLACE  VIEW view_ordenTrabajo AS
 Select ot.id_ordenTrabajo, concat(nom_cliente ," ", apPaterno ," ",apMaterno ) AS "Nombre Completo", cl.nom_negocio, ot.correo_pers, ot.personal_acep, ot.fechaEmision , nom_estCobranza,c.subTotal, c.iva, c.total as "Total Venta", totalPagado, c.observacion
 from ordenTrabajo ot
@@ -79,7 +66,6 @@ inner join cotizacion c on c.id_cotizacion = ot.id_cotizacion
 inner join cliente cl on cl.id_cliente =c.id_cliente
 inner join estatusCobranza ec on ec.id_estCobranza = ot.id_estCobranza
 ORDER BY ot.id_ordenTrabajo DESC;
-
 
 # 		ACABADO
 CREATE OR REPLACE view view_acabado  as
