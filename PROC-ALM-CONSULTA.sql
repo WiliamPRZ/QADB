@@ -264,20 +264,20 @@ Create procedure consulta_Prod_ordenTrabajo(
 BEGIN
 	Select ot.id_ordenTrabajo, pc.id_cotizacion, pc.id_prod_cot , pc.id_producto,  pc.cantidad,  sc.nom_subclasificacion , p.nombre_prod as "Descripcion", 
     FORMAT(pc.prod_base, 2) AS base, FORMAT(pc.prod_altura, 2) AS altura, FORMAT(pc.prod_base * pc.prod_altura, 2) AS m2, pc.precio_Uni, pc.importe,
-	GROUP_CONCAT(a.nom_acabado ORDER BY a.nom_acabado SEPARATOR ', ') AS Acabados
+	COALESCE(GROUP_CONCAT(a.nom_acabado ORDER BY a.nom_acabado SEPARATOR ', '), 'Sin acabados') AS Acabados
     from prod_cotizacion pc
     inner join cotizacion c on pc.id_cotizacion = c.id_cotizacion
     inner join ordenTrabajo ot on ot.id_cotizacion = c.id_cotizacion
     inner join producto p on p.id_producto= pc.id_producto
     inner join material m on m.id_material = p.id_material
-	inner join acab_cotizacion ac on ac.id_prod_cot = pc.id_prod_cot
-	inner join acabado a on ac.id_acabado = a.id_acabado 
+    LEFT JOIN acab_cotizacion ac ON ac.id_prod_cot = pc.id_prod_cot
+    LEFT JOIN acabado a ON ac.id_acabado = a.id_acabado
     inner join subClasificacion sc on sc.id_subclasificacion =p.id_subclasificacion
     where ot.id_ordenTrabajo = ID
 	group by  ot.id_ordenTrabajo, pc.id_prod_cot;
 END //
 DELIMITER ;
-call consulta_Prod_ordenTrabajo(1)
+call consulta_Prod_ordenTrabajo(1);
 # 		PAGO	ORDEN	DE	TRABAJO
 DELIMITER //
 Create procedure consulta_pagoOrdenTrabajo(
@@ -292,3 +292,5 @@ BEGIN
     where pot.id_ordenTrabajo = ID;
 END //
 DELIMITER ;
+
+
